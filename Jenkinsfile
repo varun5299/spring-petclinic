@@ -1,21 +1,16 @@
 pipeline {
   agent any
   stages {
-    stage('Build') {
+    stage('SonarQube') {
       steps {
-        sh './mvnw clean install -DskipTests'
-      }
-    }
-    stage('SonarQube analysis') {
-      steps {
-        withSonarQubeEnv('SonarQube') {
-          sh './mvnw sonar:sonar'
+        withSonarQubeEnv(installationName: 'sonarqube', credentialsId: 'sonarCredentials') {
+          sh './mvnw clean verify sonar:sonar'
         }
       }
     }
-    stage('Run') {
+    stage('Build') {
       steps {
-        sh 'java -jar target/*.jar &'
+        sh './mvnw package'
       }
     }
   }
