@@ -6,6 +6,12 @@ pipeline {
         git(url: 'https://github.com/varun5299/spring-petclinic', branch: 'main')
       }
     }
+    
+        stage('Build') {
+      steps {
+        sh 'mvn -B -DskipTests clean package'
+      }
+    }
 
     stage('SonarQube analysis') {
       steps {
@@ -15,11 +21,7 @@ pipeline {
       }
     }
     
-    stage('Build') {
-      steps {
-        sh 'mvn clean package'
-      }
-    }
+
 
     stage('Execute jar') {
       steps {
