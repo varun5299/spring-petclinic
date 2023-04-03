@@ -15,7 +15,7 @@ pipeline {
     
     stage('Run') {
       steps {
-        sh 'java -jar target/spring-petclinic-*.jar --server.port=9000'
+        sh 'java -jar target/spring-petclinic-*.jar --server.port=8081'
       }
     }
 
