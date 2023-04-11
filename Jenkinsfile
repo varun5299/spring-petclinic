@@ -13,11 +13,14 @@ pipeline {
       }
     }
     
-    stage('Run') {
-      steps {
-        sh 'java -jar target/spring-petclinic-3.0.0-SNAPSHOT.jar --server.port=8081 &'
-      }
-    }
-
+    stage('Deploy'){         
+      steps{
+        ansiblePlaybook( 
+          playbook: '/home/vagrant/ansible-jar-playbook.yml',
+          inventory: '/home/vagrant/hosts', 
+          credentialsId: '/var/lib/jenkins/.ssh/id_rsa'
+          )
+            }
+        }
   }
 }
