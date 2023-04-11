@@ -17,7 +17,7 @@ pipeline {
       steps{
         ansiblePlaybook( 
           playbook: '/home/vagrant/ansible-playbook.yml',
-          inventory: '/home/vagrant/hosts', 
+          inventory: '/etc/ansible/hosts', 
           )
             }
         }
