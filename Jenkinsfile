@@ -4,8 +4,8 @@ pipeline {
     stage('Deploy'){         
       steps{
         ansiblePlaybook( 
-          playbook: '/home/vagrant/ansible-playbook.yml',
-          inventory: '/etc/ansible/hosts', 
+          inventory: '/etc/ansible/hosts',
+          playbook: '/home/vagrant/ansible-playbook.yml', 
           )
             }
         }
